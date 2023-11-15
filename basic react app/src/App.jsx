@@ -11,14 +11,15 @@ function Description() {
 function App() {
   
   return (
-    <div>
+    <>
       <h1> this is my app component</h1>
       <p> inside we have the title component</p>
       <Title/>
       <Description/>
-    </div>
+      </>
   )
 }
 
 export default App;
  
+//* in case of using div , we are creating an extra node to make to compact we use fragment i.e <> inside it we use to combine multiple component</>
