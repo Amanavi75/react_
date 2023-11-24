@@ -1,5 +1,6 @@
 import "./App.css" ;
 import Title from "./title.jsx";
+import MsgBox from "./MsgBox.jsx";
 
 
 function Description() {
@@ -16,6 +17,8 @@ function App() {
       <p> inside we have the title component</p>
       <Title/>
       <Description/>
+      <MsgBox userName="shradha" textColor="yellow"/>
+      <MsgBox userName="Aman" textColor="green"/>
       </>
   )
 }
