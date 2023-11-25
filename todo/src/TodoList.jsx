@@ -18,7 +18,6 @@ export default function TodoList(){
     // this function is use to trigger the update in the todo values 
     
 
-
     //* here onchange is used to trigger the change , whenever there will be any change in the todovalue this change will trigger 
 
     return (
@@ -43,7 +42,7 @@ export default function TodoList(){
     )
 }
 
-// react state that whenever we have an list item then we  must an key property associated with that item that is basically the unique idntifier
+// react states that whenever we have an list item then we  must an key property associated with that item that is basically the unique idntifier
 
 // it will help us in function like deleting the item and in  searching that particular items 
 
