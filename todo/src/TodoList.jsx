@@ -24,6 +24,17 @@ export default function TodoList(){
     }
     
 
+    let upperCaseAll = () =>{
+        setTodos((prevTodos) => (Todos.map((prevTodos)=>{
+            return {
+                ...prevTodos,
+                task: prevTodos.task.toUpperCase()
+            }
+        })
+        ));
+    }
+    //* function to update all the element to upperList 
+
     //* here onchange is used to trigger the change , whenever there will be any change in the todovalue this change will trigger 
 
     return (
@@ -48,9 +59,11 @@ export default function TodoList(){
            // in case if we  use the normal parenthesis then we dont have wirte the return statement but if we use curly braces then we have write the return keyboard 
         }
      </ul>
+
+     <button onClick={upperCaseAll}>UpperCase</button>
     </div>
     )
-}
+};
 
 // react states that whenever we have an list item then we  must an key property associated with that item that is basically the unique idntifier
 
