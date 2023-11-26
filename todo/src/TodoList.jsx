@@ -8,7 +8,9 @@ export default function TodoList(){
     //* initializing the useState  empty array 
 
     let addNewTask= () =>{
-        setTodos([...Todos, {task:newTodo, id:uuidv4()}]);
+        setTodos((prevTodos)=>{
+            return [...prevTodos, {task:newTodo, id:uuidv4()}]
+        });
     }
 
     let updateTodoValue= (event) => {
@@ -16,6 +18,10 @@ export default function TodoList(){
     };
 
     // this function is use to trigger the update in the todo values 
+
+    let deleteTodo = (id) =>{
+         setTodos( (prevTodos)=> Todos.filter((prevTodos)=> prevTodos.id!=(id)));
+    }
     
 
     //* here onchange is used to trigger the change , whenever there will be any change in the todovalue this change will trigger 
@@ -33,7 +39,11 @@ export default function TodoList(){
      <ul>
         {
            Todos.map((todo)=>(
-             <li key={todo.id}>{todo.task}</li>
+             <li key={todo.id}>
+                <span>{todo.task}</span>
+                &nbsp; &nbsp; &nbsp; &nbsp;
+                <button onClick={() => deleteTodo(todo.id)}>delete</button>
+             </li>
            ))
            // in case if we  use the normal parenthesis then we dont have wirte the return statement but if we use curly braces then we have write the return keyboard 
         }
