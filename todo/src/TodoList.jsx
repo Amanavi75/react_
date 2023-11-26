@@ -3,15 +3,16 @@ import {v4 as uuidv4} from 'uuid';
 
 
 export default function TodoList(){
-    let [Todos,setTodos] = useState([{task: "sample-task", id:uuidv4()}]);
+    let [Todos,setTodos] = useState([{task: "sample-task", id:uuidv4(),isDone: false}]);
     let [newTodo, setNewTodo] = useState("")
     //* initializing the useState  empty array 
 
     let addNewTask= () =>{
         setTodos((prevTodos)=>{
-            return [...prevTodos, {task:newTodo, id:uuidv4()}]
+            return [...prevTodos, {task:newTodo, id:uuidv4(),isDone: false}]
         });
     }
+// for the newly added todos the default isDone case will false 
 
     let updateTodoValue= (event) => {
     setNewTodo(event.target.value)
@@ -22,18 +23,33 @@ export default function TodoList(){
     let deleteTodo = (id) =>{
          setTodos( (prevTodos)=> Todos.filter((prevTodos)=> prevTodos.id!=(id)));
     }
-    
+    // function to delete the element using its id 
 
-    let upperCaseAll = () =>{
+    let markAllDone = () =>{
         setTodos((prevTodos) => (Todos.map((prevTodos)=>{
             return {
                 ...prevTodos,
-                task: prevTodos.task.toUpperCase()
+                isDone:true,
             }
         })
         ));
     }
-    //* function to update all the element to upperList 
+    
+
+    let markAsDone = (id) =>{
+        setTodos((prevTodos) => (prevTodos.map((todo)=>{
+            if(todo.id==id){
+                return {
+                    ...todo,
+                    isDone:true,
+                };
+            } else {
+                return todo;
+            }
+            
+           })
+        ));
+    }
 
     //* here onchange is used to trigger the change , whenever there will be any change in the todovalue this change will trigger 
 
@@ -51,16 +67,17 @@ export default function TodoList(){
         {
            Todos.map((todo)=>(
              <li key={todo.id}>
-                <span>{todo.task}</span>
+                <span style={todo.isDone ? {textDecoration: "line-through"}: {}}>{todo.task}</span>
                 &nbsp; &nbsp; &nbsp; &nbsp;
                 <button onClick={() => deleteTodo(todo.id)}>delete</button>
+                <button onClick={() => markAsDone(todo.id)}>markAsDone</button>
              </li>
            ))
            // in case if we  use the normal parenthesis then we dont have wirte the return statement but if we use curly braces then we have write the return keyboard 
         }
      </ul>
 
-     <button onClick={upperCaseAll}>UpperCase</button>
+     <button onClick={markAllDone }>markAllDone </button>
     </div>
     )
 };
